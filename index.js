@@ -22,7 +22,10 @@ const bookRoute = require("./routes/book.routes");
 
 const surveyRoute = require("./routes/survey.routes");
 
-const authRouter =require("./routes/auth.routes")
+const authRouter =require("./routes/auth.routes");
+
+const questionnaireRouter =require("./routes/questionnaire.routes")
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -42,6 +45,8 @@ app.use(
 app.use("/api", bookRoute);
 app.use("/survey-api", surveyRoute);
 app.use("/auth",authRouter);
+
+app.use("/questionnaire-api", questionnaireRouter);
 
 // PORT
 const port = process.env.PORT || 8000;

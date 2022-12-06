@@ -6,10 +6,11 @@ let Survey = new Schema(
     userId: {type: String,},
     title: {type: String,},
     starter: {type: String,},
-    ender: {type: String,},
+    ending: {type: String,},
     state:{type:String},
     questionList:{type:Array},
-    createDate:{type:String}
+    createDate:{type:Date},
+  
   },
   {
     collection: "surveys",
