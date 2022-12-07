@@ -10,12 +10,7 @@ const Question =new Schema({
     answer:String|Number
 })
 
-const CollectionData= new Schema({
-  version:String,
-  endDate:Date,
-  actived:Boolean,
-  data:[Question]  
-});
+
 
 let Qustionnaire = new Schema(
   {
@@ -27,7 +22,7 @@ let Qustionnaire = new Schema(
     questionList:[Question],
     createDate:{type:Date},
     expireDate:{type:Date},
-    collectionData:[CollectionData]
+    collectionData:[[Question]]
 
   },
   {

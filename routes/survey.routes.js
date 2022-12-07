@@ -4,7 +4,7 @@ const app = express();
 const surveyRoute = express.Router();
 let Survey = require("../model/Survey");
 
-// Add Survey
+
 surveyRoute.route("/add-survey").post((req, res, next) => {
   Survey.create(req.body, (error, data) => {
     if (error) {
@@ -15,7 +15,7 @@ surveyRoute.route("/add-survey").post((req, res, next) => {
   });
 });
 
-// Get all Book
+
 surveyRoute.route("/").get((req, res) => {
   Survey.find((error, data) => {
     if (error) {
@@ -26,7 +26,7 @@ surveyRoute.route("/").get((req, res) => {
   });
 });
 
-// Get Book
+
 surveyRoute.route("/read-survey/:id").get((req, res) => {
   Survey.findById(req.params.id, (error, data) => {
     if (error) {
@@ -56,7 +56,7 @@ surveyRoute.route("/update-survey/:id").put((req, res, next) => {
   );
 });
 
-// Delete Book
+
 surveyRoute.route("/delete-survey/:id").delete((req, res, next) => {
   Survey.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {

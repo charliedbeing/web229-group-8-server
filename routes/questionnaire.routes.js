@@ -15,7 +15,7 @@ questionnaireRoute.route("/add-questionnaire").post((req, res, next) => {
   });
 });
 
-// Get all Book
+// Get all Questionnaire
 questionnaireRoute.route("/questionnaires").get((req, res) => {
   Questionnaire.find((error, data) => {
     if (error) {
@@ -25,6 +25,18 @@ questionnaireRoute.route("/questionnaires").get((req, res) => {
     }
   });
 });
+
+// Get all Questionnaire by userId 
+questionnaireRoute.route("/questionnaires/:userId").get((req, res) => {
+  Questionnaire.find({userId:{"$eq":req.params.userId}},(error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
 
 questionnaireRoute.route("/questionnaire/:id").get((req, res) => {
   Questionnaire.findById(req.params.id, (error, data) => {
@@ -36,7 +48,7 @@ questionnaireRoute.route("/questionnaire/:id").get((req, res) => {
   });
 });
 
-// update questionnaire state
+// update questionnaire 
 questionnaireRoute.route("/questionnaire/:id").put((req, res,next) => {
  
   Questionnaire.findByIdAndUpdate(req.params.id,
@@ -51,7 +63,7 @@ questionnaireRoute.route("/questionnaire/:id").put((req, res,next) => {
   });
 });
 
-// update questionnaire state
+// update questionnaire 
 questionnaireRoute.route("/questionnaire/:id").delete((req, res,next) => {
  
   Questionnaire.findByIdAndRemove(req.params.id, (error, data) => {
@@ -66,7 +78,7 @@ questionnaireRoute.route("/questionnaire/:id").delete((req, res,next) => {
 
 });
 
-// Get Book
+// read survey 
 questionnaireRoute.route("/read-survey/:id").get((req, res) => {
   Survey.findById(req.params.id, (error, data) => {
     if (error) {
@@ -96,7 +108,7 @@ questionnaireRoute.route("/update-survey/:id").put((req, res, next) => {
   );
 });
 
-// Delete Book
+// Delete survey  
 questionnaireRoute.route("/delete-survey/:id").delete((req, res, next) => {
   Survey.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
