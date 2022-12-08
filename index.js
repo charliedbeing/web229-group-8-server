@@ -24,7 +24,9 @@ const surveyRoute = require("./routes/survey.routes");
 
 const authRouter =require("./routes/auth.routes");
 
-const questionnaireRouter =require("./routes/questionnaire.routes")
+const questionnaireRouter =require("./routes/questionnaire.routes");
+
+const onlyoneRouter = require("./routes/onlyone.routes");
 
 
 const app = express();
@@ -47,6 +49,7 @@ app.use("/survey-api", surveyRoute);
 app.use("/auth",authRouter);
 
 app.use("/questionnaire-api", questionnaireRouter);
+app.use("/answer-api",onlyoneRouter);
 
 // PORT
 const port = process.env.PORT || 8000;
