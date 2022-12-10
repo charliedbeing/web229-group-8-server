@@ -26,6 +26,17 @@ questionnaireRoute.route("/questionnaires").get((req, res) => {
   });
 });
 
+//questionnairesPublic
+questionnaireRoute.route("/questionnairesPublic").get((req, res) => {
+  Questionnaire.find({state:{"$lt": 3}},(error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
 // Get all Questionnaire by userId 
 questionnaireRoute.route("/questionnaires/:userId").get((req, res) => {
   Questionnaire.find({userId:{"$eq":req.params.userId}},(error, data) => {

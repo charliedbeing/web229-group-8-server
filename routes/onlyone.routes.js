@@ -28,6 +28,39 @@ onlyOneRouter.route("/onlyone/:uuid").get((req, res) => {
   });
 });
 
+// Get  OnlyOne
+onlyOneRouter.route("/onlyones/:userID").get((req, res) => {
+  OnlyOne.find({userID:{"$eq":req.params.userID}}, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+// Get  OnlyOne
+onlyOneRouter.route("/onlyones").get((req, res) => {
+  OnlyOne.find((error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+// Get OnlyOnes according  valid questionnaireIDs
+onlyOneRouter.route("/onlyones").post((req, res) => {
+  OnlyOne.find({questionnaireID:{"$in":req.body}},(error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
 // Update OnlyOne
 onlyOneRouter.route("/onlyone/:id").put((req, res, next) => {
   OnlyOne.findByIdAndUpdate(

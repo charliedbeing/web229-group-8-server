@@ -6,7 +6,15 @@ let OnlyOne = new Schema(
     answerUUID: {
       type: String,
     },
-    
+
+    questionnaireID: {
+      type: String,
+    },
+
+    userID: {
+      type: String,
+    },
+       
     isAnswer: {
       type: Boolean,
     },
