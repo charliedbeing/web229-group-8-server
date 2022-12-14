@@ -43,11 +43,10 @@ app.use(
   express.static(path.join(__dirname, "dist/angular-mean-crud-tutorial"))
 );
 
-// API root
+// API 
 app.use("/api", bookRoute);
 app.use("/survey-api", surveyRoute);
 app.use("/auth",authRouter);
-
 app.use("/questionnaire-api", questionnaireRouter);
 app.use("/answer-api",onlyoneRouter);
 

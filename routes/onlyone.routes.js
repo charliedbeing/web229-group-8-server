@@ -3,9 +3,10 @@ const app = express();
 
 const onlyOneRouter = express.Router();
 let OnlyOne = require("../model/OnlyOne");
+const authorize = require('../middlewares/auth')
 
 // Add Onlyone initialization
-onlyOneRouter.route("/onlyone").post((req, res, next) => {
+onlyOneRouter.route("/onlyone").post(authorize,(req, res, next) => {
   OnlyOne.create(req.body, (error, data) => {
     if (error) {
       return next(error);
@@ -51,6 +52,7 @@ onlyOneRouter.route("/onlyones").get((req, res) => {
 });
 
 // Get OnlyOnes according  valid questionnaireIDs
+// this method use post ,but it is a query feature , 
 onlyOneRouter.route("/onlyones").post((req, res) => {
   OnlyOne.find({questionnaireID:{"$in":req.body}},(error, data) => {
     if (error) {

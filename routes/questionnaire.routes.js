@@ -2,10 +2,11 @@ const express = require("express");
 const app = express();
 
 const questionnaireRoute = express.Router();
+const authorize = require('../middlewares/auth')
 let Questionnaire = require("../model/Questionnaire");
 
 // Add Questionnaire
-questionnaireRoute.route("/add-questionnaire").post((req, res, next) => {
+questionnaireRoute.route("/add-questionnaire").post(authorize,(req, res, next) => {
   Questionnaire.create(req.body, (error, data) => {
     if (error) {
       return next(error);
@@ -75,7 +76,7 @@ questionnaireRoute.route("/questionnaire/:id").put((req, res,next) => {
 });
 
 // update questionnaire 
-questionnaireRoute.route("/questionnaire/:id").delete((req, res,next) => {
+questionnaireRoute.route("/questionnaire/:id").delete(authorize,(req, res,next) => {
  
   Questionnaire.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
@@ -101,7 +102,7 @@ questionnaireRoute.route("/read-survey/:id").get((req, res) => {
 });
 
 // Update Survey
-questionnaireRoute.route("/update-survey/:id").put((req, res, next) => {
+questionnaireRoute.route("/update-survey/:id").put(authorize,(req, res, next) => {
   Survey.findByIdAndUpdate(
     req.params.id,
     {
@@ -120,7 +121,7 @@ questionnaireRoute.route("/update-survey/:id").put((req, res, next) => {
 });
 
 // Delete survey  
-questionnaireRoute.route("/delete-survey/:id").delete((req, res, next) => {
+questionnaireRoute.route("/delete-survey/:id").delete(authorize,(req, res, next) => {
   Survey.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
